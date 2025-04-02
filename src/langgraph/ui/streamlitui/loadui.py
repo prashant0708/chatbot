@@ -8,6 +8,16 @@ class LoadStreamlitUI:
     def __init__(self):
         self.config = Config()
         self.user_control = {}
+    def initialize_session(self):
+        return {
+        "current_step": "requirements",
+        "requirements": "",
+        "user_stories": "",
+        "po_feedback": "",
+        "generated_code": "",
+        "review_feedback": "",
+        "decision": None
+    }
         
         
     def load_streamlit_ui(self):
@@ -31,3 +41,10 @@ class LoadStreamlitUI:
                 self.user_control["selected_groq_model"] = st.selectbox("Select Model",model_options)
                 ## API KEY
                 self.user_control["GROQ_API_KEY"] = st.session_state["GROQ_API_KEY"]=st.text_input("API KEY",type="password")
+                ## Validate API key
+                if not self.user_control["GROQ_API_KEY"]:
+                    st.warning("Please enter your Groq API key to proceed")
+        if "state" not in st.session_state:
+            st.session_state.state = self.initialize_session()
+        
+        return self.user_control
