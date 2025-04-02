@@ -8,16 +8,20 @@ class LoadStreamlitUI:
     def __init__(self):
         self.config = Config()
         self.user_control = {}
+   
+       
     def initialize_session(self):
         return {
-        "current_step": "requirements",
-        "requirements": "",
-        "user_stories": "",
-        "po_feedback": "",
-        "generated_code": "",
-        "review_feedback": "",
-        "decision": None
-    }
+            "current_step": "requirements",
+            "requirements": "",
+            "user_stories": "",
+            "po_feedback": "",
+            "generated_code": "",
+            "review_feedback": "",
+            "decision": None
+        }
+        
+
         
         
     def load_streamlit_ui(self):

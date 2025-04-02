@@ -1,10 +1,10 @@
-from fastapi import FastAPI
 
-app = FastAPI()
+import streamlit as st
+import json
+from src.langgraph.ui.streamlitui.loadui import LoadStreamlitUI
 
-@app.get("/hello")
-def read_hello():
-    return {"message": "Hello, FastAPI!"}
+
+ui = LoadStreamlitUI()
 
 
 
