@@ -5,6 +5,7 @@ from src.langgraph.ui.streamlitui.loadui import LoadStreamlitUI
 
 
 ui = LoadStreamlitUI()
+test= ui.load_streamlit_ui()
 
 
 
