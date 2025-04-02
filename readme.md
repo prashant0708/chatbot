@@ -24,3 +24,13 @@ git pull origin master --rebase
 git push -u origin master
 ```
 
+### Create virtual Enviroment
+
+```
+conda create -p chatbotenv python==3.12
+```
+### Activate the create virtusl enviroment
+```
+conda activate chatbotenv/
+```
+
