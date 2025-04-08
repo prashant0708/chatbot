@@ -3,11 +3,16 @@ from configparser import ConfigParser
 import os
 
 class Config:
-    def __init__(self,config_file=r".\src\langgraph\ui\ui_configfile.ini"):
-        print(f"Looking for config at: {os.path.abspath(config_file)}")
+    def __init__(self,config_file="ui_configfile.ini"):
+        root_dir = os.getcwd()
+        print(f"root directory: {root_dir}")
+        current_dir=  os.path.join("src", "langgraph", "ui", config_file)
+        
+        config_path = os.path.join(root_dir,current_dir)
+        print(f"Looking for config at: {config_path}")
         self.config = ConfigParser()
-        self.config.read(config_file)
-        print("Config sections:",  self.config.read(config_file))
+        self.config.read(config_path)
+        print("Config sections:",  self.config.read(config_path))
 
     def get_llm_options(self):
         return self.config["DEFAULT"].get("LLM_OPTIONS").split(",")
