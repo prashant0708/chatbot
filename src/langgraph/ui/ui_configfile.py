@@ -7,7 +7,7 @@ class Config:
         print(f"Looking for config at: {os.path.abspath(config_file)}")
         self.config = ConfigParser()
         self.config.read(config_file)
-        print("Config sections:", self.config.sections())
+        print("Config sections:",  self.config.read(config_file))
 
     def get_llm_options(self):
         return self.config["DEFAULT"].get("LLM_OPTIONS").split(",")

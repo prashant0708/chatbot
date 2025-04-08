@@ -24,7 +24,7 @@ class GroqLLM:
 
         except Exception as e:
             raise ValueError(f"Error Occured as Exception: {e}")
-        print(llm.invoke("Hello I am from GROQLLM"))
+       
         
         return llm
     
