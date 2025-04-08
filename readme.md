@@ -34,8 +34,3 @@ conda create -p chatbotenv python==3.12
 conda activate chatbotenv/
 ```
 
-```
-GROQ_API_KEY1="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"
-
-GROQ_API_KEY="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"
-```
