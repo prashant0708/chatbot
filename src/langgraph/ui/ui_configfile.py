@@ -9,7 +9,6 @@ class Config:
     def get_llm_options(self):
         return self.config["DEFAULT"].get("LLM_OPTIONS").split(",")
     def get_usecase_options(self):
-        print(self.config["DEFAULT"].get("USECASE_OPTIONS").split(","))
         return self.config["DEFAULT"].get("USECASE_OPTIONS").split(", ")
     
     def get_groq_model_options(self):
