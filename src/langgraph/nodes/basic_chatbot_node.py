@@ -1,11 +1,18 @@
 from src.langgraph.state.state import State
+from src.langgraph.LLM.groqllm import GroqLLM
+from src.langgraph.ui.streamlitui.loadui import LoadStreamlitUI
 
-class BasicChatBotNode:
+
+
+class Basicchatbot:
     def __init__(self,model):
         self.llm=model
 
-    def process(self,state:State)->dict:
+        """"
+        Process the input state and generate a chatbot response
         """
-        Process the input of the state and generate the responce 
-        """
-        return {"messages":self.llm.invoke(state["messages"])}
+
+    def process(self,state:State) ->dict:
+        return {"messages":self.llm.invoke(state['messages'])}
+
+
