@@ -1,5 +1,6 @@
 import streamlit as st
 from src.langgraph.ui.ui_configfile import Config
+import os
 
 class LoadStreamlitUI:
     def __init__(self):
@@ -45,6 +46,12 @@ class LoadStreamlitUI:
             ## USECASE_OPTIONS
             user_option = self.config.get_usecase_options()
             self.user_controls["selected_usecase"] = st.selectbox("Select Usecases",user_option)
+
+            ## Chatbot with tool 
+            if self.user_controls["selected_usecase"]== "ChatBotwithTool":
+                os.environ["Tavli_API_Key"]=self.user_controls["Tavli_API_Key"]=st.session_state["Tavli_API_Key"]=st.text_input("Tavli_API_Key",type="password")
+                if not  self.user_controls["Tavli_API_Key"]:
+                    st.warning("⚠️ Please enter your TAVILY_API_KEY key to proceed. Don't have? refer : https://app.tavily.com/home")
 
             if "state" not in st.session_state:
                 st.session_state.state = self.initialize_session()
