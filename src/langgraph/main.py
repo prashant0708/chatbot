@@ -6,6 +6,10 @@ from src.langgraph.graph.graph_builder import GraphBuilder
 from src.langgraph.LLM.groqllm import GroqLLM
 from src.langgraph.ui.streamlitui.display_result import DisplayResultStreamlit
 
+
+
+
+
 def load_langgraph_agentic_app():
     ui=LoadStreamlitUI()
     user_input = ui.load_streamlit_ui()
@@ -16,6 +20,7 @@ def load_langgraph_agentic_app():
     ## Text input from the user message
     if st.session_state.IsFetchButtonClicked:
         user_message = st.session_state.timeframe
+        
     else:
         user_message = st.chat_input("Enter your messages")
     if user_message:
