@@ -33,12 +33,3 @@ conda create -p chatbotenv python==3.12
 ```
 conda activate chatbotenv/
 ```
-
-```
-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
-```
-
-
-```
-tavli  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
-```

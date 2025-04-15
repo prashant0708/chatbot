@@ -14,6 +14,5 @@ def Tool_Node(tool):
     Return the Tool Node for the graph
     """
     Tool_node = ToolNode(tools=tool)
-    print(f'tool node function from Too_Node{Tool_node}')
     return Tool_node
 
