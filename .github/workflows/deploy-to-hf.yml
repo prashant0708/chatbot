@@ -1,45 +1,26 @@
-name: Deploy to Hugging Face Space
-
+name: Sync to Hugging Face Space
 on:
   push:
-    branches: [master]
+    branches: [Master]
+
+  # to run this workflow manually from the Actions tab 
+  workflow_dispatch:
 
 jobs:
-  deploy:
+  sync-to-hub:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
         with:
           fetch-depth: 0
           lfs: false
-
+          
       - name: Ignore large files
-        run: |
-          git filter-branch --index-filter 'git rm -rf --cached --ignore-unmatch "Rag_Documents/layout-parser-paper.pdf"' HEAD || echo "File already removed"
+        run : git filter-branch --index-filter 'git rm -rf --cached --ignore-unmatch "Rag_Documents/layout-parser-paper.pdf"' HEAD
 
-      - name: Push to Hugging Face Space
+      - name: Push to hub
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
-        run: |
-          git config --global user.email "prashantsingh.aiengineer@gmail.com"
-          git config --global user.name "PrashantS07"
-
-          # Clone the Hugging Face Space
-          git clone https://huggingface.co/spaces/PrashantS07/Chatbot space-dir
-
-          # Sync your project into the Space dir
-          rsync -av --exclude=space-dir ./ space-dir/
-          cd space-dir
-
-          # Rename local branch to match remote
-          git branch -M main
-
-          # Commit changes
-          git add .
-          git commit -m "Update from GitHub Action" || echo "No changes to commit"
-
-          # Set remote with auth and push
-          git remote set-url origin https://PrashantS07:$HF_TOKEN@huggingface.co/spaces/PrashantS07/Chatbot
-          git push origin main
+        run: git push --force https://PrashantS07:$HF_TOKEN@huggingface.co/spaces/PrashantS07/agenticai main
+       
+         
