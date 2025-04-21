@@ -26,15 +26,20 @@ jobs:
           git config --global user.email "prashantsingh.aiengineer@gmail.com"
           git config --global user.name "PrashantS07"
 
+          # Clone the Hugging Face Space
           git clone https://huggingface.co/spaces/PrashantS07/Chatbot space-dir
+
+          # Sync your project into the Space dir
           rsync -av --exclude=space-dir ./ space-dir/
           cd space-dir
 
+          # Rename local branch to match remote
           git branch -M main
 
-          
-
+          # Commit changes
           git add .
           git commit -m "Update from GitHub Action" || echo "No changes to commit"
-          git clone https://huggingface.co/spaces/PrashantS07/Chatbot
+
+          # Set remote with auth and push
+          git remote set-url origin https://PrashantS07:$HF_TOKEN@huggingface.co/spaces/PrashantS07/Chatbot
           git push origin main
