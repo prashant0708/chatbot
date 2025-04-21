@@ -27,7 +27,7 @@ jobs:
           git config --global user.name "PrashantS07"
 
           git clone https://huggingface.co/spaces/PrashantS07/Chatbot space-dir
-          cp -r * space-dir/
+          rsync -av --exclude=space-dir ./ space-dir/
           cd space-dir
 
           git add .
