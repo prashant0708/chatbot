@@ -1,0 +1,36 @@
+name : Deploy to hugging face Space
+on:
+   push:
+      branches:[master]
+
+jobs:
+  
+  deploy:
+    run-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+       with:
+          fetch-depth: 0
+          lfs: false
+    
+    -name : Ignore large files
+      run : git filter-branch --index-filter 'git rm -rf --cached --ignore-unmatch "Rag_Documents/layout-parser-paper.pdf"' HEAD
+
+    - name: Push to Hugging Face Space
+      env:
+        HF_TOKEN: ${{ secrets.HF_TOKEN }}
+      run: |
+        git config --global user.email "prashantsingh.aiengineer@gmail.com"
+        git config --global user.name "PrashantS07"
+        
+        git clone https://huggingface.co/spaces/PrashantS07/Chatbot space-dir
+        cp -r * space-dir/
+        cd space-dir
+
+        git add .
+        git commit -m "Update from GitHub Action" || echo "No changes to commit"
+        git push https://PrashantS07:$HF_TOKEN@huggingface.co/spaces/PrashantS07/Chatbot main
+
+
