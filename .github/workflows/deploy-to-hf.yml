@@ -32,4 +32,4 @@ jobs:
 
           git add .
           git commit -m "Update from GitHub Action" || echo "No changes to commit"
-          git push https://PrashantS07:$HF_TOKEN@huggingface.co/spaces/PrashantS07/Chatbot main
+          git push https://PrashantS07:$HF_TOKEN@huggingface.co/spaces/PrashantS07/Chatbot master
